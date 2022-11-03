@@ -24,10 +24,28 @@ pio.renderers.default = 'browser'
 
 #%%
 
-adorfo = yf.Ticker('PNB.NS')
+adorfo = yf.Ticker('EURCAD=X')
 hist = adorfo.history(start="2021-03-21")
 
 gannSquare = gann.GannSquare(1001, np.datetime64(hist.index[0].date()))
+
+mul = 1
+
+if hist['Close'][0] < 100:
+    mul = 10
+
+if hist['Close'][0] < 10:
+    mul = 100
+
+if hist['Close'][0] < 1:
+    mul = 1000
+
+multiplier = mul # change here   
+
+hist['Close'] = hist['Close'] * multiplier
+hist['Open'] = hist['Open'] * multiplier
+hist['High'] = hist['High'] * multiplier
+hist['Low'] = hist['Low'] * multiplier
 
 #%%
 
@@ -50,11 +68,12 @@ fig3 = make_subplots(specs=[[{'secondary_y':True}]])
 
 indexx = [i.date() for i in hist.index]
 
+range_ = max(hist['High']) - min(hist['Low'])
 
-maximum = max(hist['High']) * 1.25
-minimum = min(hist['Low']) * 0.9
+maximum = max(hist['High']) + range_ * 0.2
+minimum = min(hist['Low']) - range_ * 0.2
 
-fig3.add_trace(go.Candlestick(x=hist.index,
+fig3.add_trace(go.Candlestick(x=indexx,
                               open=hist['Open'],
                               high=hist['High'],
                               low=hist['Low'],
