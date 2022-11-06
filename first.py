@@ -25,9 +25,18 @@ pio.renderers.default = 'browser'
 #%%
 
 adorfo = yf.Ticker('RELIANCE.NS')
-hist = adorfo.history(start="2021-03-21")
+date = "2021-03-21"
+hist = adorfo.history(start=date)
 
-gannSquare = gann.GannSquare(1001, np.datetime64(hist.index[0].date()))
+maxDate = np.datetime64(max(hist.index).date()) + np.timedelta64(365, 'D') # change here for future date
+
+range_ = max(hist['High']) - min(hist['Low'])
+
+maximum = max(hist['High']) * 1.15 # change here for maximum price
+minimum = min(hist['Low']) * 0.85 # change here for minimum price
+
+
+gannSquare = gann.GannSquare(1001, np.datetime64(date))
 
 mul = 1
 
@@ -68,11 +77,6 @@ fig3 = make_subplots(specs=[[{'secondary_y':True}]])
 
 indexx = [i.date() for i in hist.index]
 
-range_ = max(hist['High']) - min(hist['Low'])
-
-maximum = max(hist['High']) + range_ * 0.2
-minimum = min(hist['Low']) - range_ * 0.2
-
 fig3.add_trace(go.Candlestick(x=indexx,
                               open=hist['Open'],
                               high=hist['High'],
@@ -102,8 +106,6 @@ angle_180, date_angle_180 = gannSquare.get_180()
 angle_225, date_angle_225 = gannSquare.get_225()
 angle_270, date_angle_270 = gannSquare.get_270()
 angle_315, date_angle_315 = gannSquare.get_315()
-
-maxDate = np.datetime64(max(hist.index).date()) + np.timedelta64(45, 'D')
 
 for i in range(len(angle_0)):
     if angle_0[i] < maximum and angle_0[i] > minimum:
