@@ -24,7 +24,7 @@ pio.renderers.default = 'browser'
 
 #%%
 
-adorfo = yf.Ticker('EURCAD=X')
+adorfo = yf.Ticker('RELIANCE.NS')
 hist = adorfo.history(start="2021-03-21")
 
 gannSquare = gann.GannSquare(1001, np.datetime64(hist.index[0].date()))
@@ -108,73 +108,80 @@ maxDate = np.datetime64(max(hist.index).date()) + np.timedelta64(45, 'D')
 for i in range(len(angle_0)):
     if angle_0[i] < maximum and angle_0[i] > minimum:
         fig3.add_hline(y=angle_0[i], line_color='black', line_width=1.5, annotation_text="0")
-        
+
+for i in range(len(date_angle_0)):
     if date_angle_0[i] < maxDate:
         xx = (date_angle_0[i] - np.datetime64('1970-01-01'))/ np.timedelta64(1, 's')
-        fig3.add_vline(x=xx * 1000, line_color='black', line_width=1.5, annotation_text="0")
+        fig3.add_vline(x=xx * 1000, line_color='black', line_width=1.5, annotation_text="0, " + str(date_angle_0[i]))
     
 
 for i in range(len(angle_45)):
     if angle_45[i] < maximum and angle_45[i] > minimum:
         fig3.add_hline(y=angle_45[i], line_color='blue', line_width=0.75, annotation_text="45")
     
+for i in range(len(date_angle_45)):
     if date_angle_45[i] < maxDate:
         xx = (date_angle_45[i] - np.datetime64('1970-01-01'))/ np.timedelta64(1, 's')
-        fig3.add_vline(x=xx * 1000, line_color='blue', line_width=0.75, annotation_text="45")
+        fig3.add_vline(x=xx * 1000, line_color='blue', line_width=0.75, annotation_text="45, " + str(date_angle_45[i]))
     
 
 for i in range(len(angle_90)):
     if angle_90[i] < maximum and angle_90[i] > minimum:
         fig3.add_hline(y=angle_90[i], line_color='black', line_width=0.75, annotation_text="90")
-        
+
+for i in range(len(date_angle_90)):
     if date_angle_90[i] < maxDate:
         xx = (date_angle_90[i] - np.datetime64('1970-01-01'))/ np.timedelta64(1, 's')
-        fig3.add_vline(x=xx * 1000, line_color='black', line_width=0.75, annotation_text="90")
+        fig3.add_vline(x=xx * 1000, line_color='black', line_width=0.75, annotation_text="90, " + str(date_angle_90[i]))
     
 
 for i in range(len(angle_135)):
     if angle_135[i] < maximum and angle_135[i] > minimum:
         fig3.add_hline(y=angle_135[i], line_color='blue', line_width=0.75, annotation_text="135")
-        
+
+for i in range(len(date_angle_135)):        
     if date_angle_135[i] < maxDate:
         xx = (date_angle_135[i] - np.datetime64('1970-01-01'))/ np.timedelta64(1, 's')
-        fig3.add_vline(x=xx * 1000, line_color='blue', line_width=0.75, annotation_text="135")
+        fig3.add_vline(x=xx * 1000, line_color='blue', line_width=0.75, annotation_text="135, " + str(date_angle_135[i]))
     
-
 
 for i in range(len(angle_180)):
     if angle_180[i] < maximum and angle_180[i] > minimum:
         fig3.add_hline(y=angle_180[i], line_color='black', line_width=1.5, annotation_text="180")
-    
+
+for i in range(len(date_angle_180)):    
     if date_angle_180[i] < maxDate:
         xx = (date_angle_180[i] - np.datetime64('1970-01-01'))/ np.timedelta64(1, 's')
-        fig3.add_vline(x=xx * 1000, line_color='black', line_width=1.5, annotation_text="180")
+        fig3.add_vline(x=xx * 1000, line_color='black', line_width=1.5, annotation_text="180, " + str(date_angle_180[i]))
     
 
 for i in range(len(angle_225)):
     if angle_225[i] < maximum and angle_225[i] > minimum:
         fig3.add_hline(y=angle_225[i], line_color='blue', line_width=0.75, annotation_text="225")
-        
+
+for i in range(len(date_angle_225)):        
     if date_angle_225[i] < maxDate:
         xx = (date_angle_225[i] - np.datetime64('1970-01-01'))/ np.timedelta64(1, 's')
-        fig3.add_vline(x=xx * 1000, line_color='blue', line_width=0.75, annotation_text="225")
+        fig3.add_vline(x=xx * 1000, line_color='blue', line_width=0.75, annotation_text="225, " + str(date_angle_225[i]))
     
 
 for i in range(len(angle_270)):
     if angle_270[i] < maximum and angle_270[i] > minimum:
         fig3.add_hline(y=angle_270[i], line_color='black', line_width=0.75, annotation_text="270")
-    
+
+for i in range(len(date_angle_270)):    
     if date_angle_270[i] < maxDate:
         xx = (date_angle_270[i] - np.datetime64('1970-01-01'))/ np.timedelta64(1, 's')
-        fig3.add_vline(x=xx * 1000, line_color='black', line_width=0.75, annotation_text="270")
+        fig3.add_vline(x=xx * 1000, line_color='black', line_width=0.75, annotation_text="270, " + str(date_angle_270[i]))
     
 
 for i in range(len(angle_315)):
     if angle_315[i] < maximum and angle_315[i] > minimum:
         fig3.add_hline(y=angle_315[i], line_color='blue', line_width=0.75, annotation_text="315")
-    
+
+for i in range(len(date_angle_315)):    
     if date_angle_315[i] < maxDate:
         xx = (date_angle_315[i] - np.datetime64('1970-01-01'))/ np.timedelta64(1, 's')
-        fig3.add_vline(x=xx * 1000, line_color='blue', line_width=0.75, annotation_text="315")
+        fig3.add_vline(x=xx * 1000, line_color='blue', line_width=0.75, annotation_text="315, " + str(date_angle_315[i]))
 
 fig3.show(config={'scrollZoom': True, 'displayModeBar': False})

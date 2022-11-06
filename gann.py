@@ -20,8 +20,9 @@ class GannSquare():
         self.even_size = size % 2 == 0
         self.odd_size = size % 2 == 1
         self.num_elements = size ** 2
+        self.date_angle_ratio = 365.24/360
         
-        self.date = date
+        self.date = np.datetime64(date)
         
         self.matrix = self.generate()
         
@@ -109,7 +110,8 @@ class GannSquare():
         horizontal_axis = self.get_horizontal_axis()
         res = list(horizontal_axis[len(horizontal_axis)//2:])
         
-        dateRes = [self.date + np.timedelta64(i - 1, 'D') for i in res]
+        date_ = [0 + i * 360 for i in range(15)]
+        dateRes = [self.date + np.timedelta64(round(i * self.date_angle_ratio), 'D') for i in date_]
         
         return res, dateRes
     
@@ -117,7 +119,8 @@ class GannSquare():
         horizontal_axis = self.get_horizontal_axis()
         res = list(horizontal_axis[:len(horizontal_axis)//2 + 1])[::-1]
         
-        dateRes = [self.date + np.timedelta64(i - 1, 'D') for i in res]
+        date_ = [180 + i * 360 for i in range(15)]
+        dateRes = [self.date + np.timedelta64(round(i * self.date_angle_ratio), 'D') for i in date_]
         
         return res, dateRes
     
@@ -125,7 +128,8 @@ class GannSquare():
         diagonal_1 = self.get_diagonal_1()
         res = list(diagonal_1[:len(diagonal_1)//2 + 1])[::-1]
         
-        dateRes = [self.date + np.timedelta64(i - 1, 'D') for i in res]
+        date_ = [45 + i * 360 for i in range(15)]
+        dateRes = [self.date + np.timedelta64(round(i * self.date_angle_ratio), 'D') for i in date_]
         
         return res, dateRes
 
@@ -133,7 +137,8 @@ class GannSquare():
         diagonal_1 = self.get_diagonal_1()
         res = list(diagonal_1[len(diagonal_1)//2:])
         
-        dateRes = [self.date + np.timedelta64(i - 1, 'D') for i in res]
+        date_ = [225 + i * 360 for i in range(15)]
+        dateRes = [self.date + np.timedelta64(round(i * self.date_angle_ratio), 'D') for i in date_]
         
         return res, dateRes
     
@@ -141,7 +146,8 @@ class GannSquare():
         vertical_axis = self.get_vertical_axis()
         res = list(vertical_axis[:len(vertical_axis)//2 + 1])[::-1]
         
-        dateRes = [self.date + np.timedelta64(i - 1, 'D') for i in res]
+        date_ = [90 + i * 360 for i in range(15)]
+        dateRes = [self.date + np.timedelta64(round(i * self.date_angle_ratio), 'D') for i in date_]
         
         return res, dateRes
 
@@ -149,7 +155,8 @@ class GannSquare():
         vertical_axis = self.get_vertical_axis()
         res = list(vertical_axis[len(vertical_axis)//2:])
         
-        dateRes = [self.date + np.timedelta64(i - 1, 'D') for i in res]
+        date_ = [270 + i * 360 for i in range(15)]
+        dateRes = [self.date + np.timedelta64(round(i * self.date_angle_ratio), 'D') for i in date_]
         
         return res, dateRes
     
@@ -157,7 +164,8 @@ class GannSquare():
         diagonal_2 = self.get_diagonal_2()
         res = list(diagonal_2[:len(diagonal_2)//2 + 1])[::-1]
         
-        dateRes = [self.date + np.timedelta64(i - 1, 'D') for i in res]
+        date_ = [135 + i * 360 for i in range(15)]
+        dateRes = [self.date + np.timedelta64(round(i * self.date_angle_ratio), 'D') for i in date_]
         
         return res, dateRes
 
@@ -165,6 +173,7 @@ class GannSquare():
         diagonal_2 = self.get_diagonal_2()
         res = list(diagonal_2[len(diagonal_2)//2:])
         
-        dateRes = [self.date + np.timedelta64(i - 1, 'D') for i in res]
+        date_ = [315 + i * 360 for i in range(15)]
+        dateRes = [self.date + np.timedelta64(round(i * self.date_angle_ratio), 'D') for i in date_]
         
         return res, dateRes
