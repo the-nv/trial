@@ -17,6 +17,7 @@ import plotly.graph_objects as go
 import plotly.io as pio
 from plotly.subplots import make_subplots
 import gann
+import math
 
 #%%
 pio.renderers.default = 'browser'
@@ -107,9 +108,23 @@ angle_225, date_angle_225 = gannSquare.get_225()
 angle_270, date_angle_270 = gannSquare.get_270()
 angle_315, date_angle_315 = gannSquare.get_315()
 
+dateCount = 0
+
+def calcLevel(price):
+    intsqrt = int(math.sqrt(price))
+    
+    if intsqrt % 2 == 1:
+        if intsqrt ** 2 == price:
+            return int(intsqrt/2)
+        else:
+            return int(intsqrt/2 + 1)
+    else:
+        return int(intsqrt/2 + 1)
+
 for i in range(len(angle_0)):
     if angle_0[i] < maximum and angle_0[i] > minimum:
-        fig3.add_hline(y=angle_0[i], line_color='black', line_width=1.5, annotation_text="0")
+        l = calcLevel(angle_0[i])
+        fig3.add_hline(y=angle_0[i], line_color='black', line_width=1.5, annotation_text=str(l) + ": 0")
 
 for i in range(len(date_angle_0)):
     if date_angle_0[i] < maxDate:
@@ -119,7 +134,8 @@ for i in range(len(date_angle_0)):
 
 for i in range(len(angle_45)):
     if angle_45[i] < maximum and angle_45[i] > minimum:
-        fig3.add_hline(y=angle_45[i], line_color='blue', line_width=0.75, annotation_text="45")
+        l = calcLevel(angle_45[i])
+        fig3.add_hline(y=angle_45[i], line_color='blue', line_width=0.75, annotation_text=str(l) + ": 45")
     
 for i in range(len(date_angle_45)):
     if date_angle_45[i] < maxDate:
@@ -129,7 +145,8 @@ for i in range(len(date_angle_45)):
 
 for i in range(len(angle_90)):
     if angle_90[i] < maximum and angle_90[i] > minimum:
-        fig3.add_hline(y=angle_90[i], line_color='black', line_width=0.75, annotation_text="90")
+        l = calcLevel(angle_90[i])
+        fig3.add_hline(y=angle_90[i], line_color='black', line_width=0.75, annotation_text=str(l) + ": 90")
 
 for i in range(len(date_angle_90)):
     if date_angle_90[i] < maxDate:
@@ -139,7 +156,8 @@ for i in range(len(date_angle_90)):
 
 for i in range(len(angle_135)):
     if angle_135[i] < maximum and angle_135[i] > minimum:
-        fig3.add_hline(y=angle_135[i], line_color='blue', line_width=0.75, annotation_text="135")
+        l = calcLevel(angle_135[i])
+        fig3.add_hline(y=angle_135[i], line_color='blue', line_width=0.75, annotation_text=str(l) + ": 135")
 
 for i in range(len(date_angle_135)):        
     if date_angle_135[i] < maxDate:
@@ -149,7 +167,8 @@ for i in range(len(date_angle_135)):
 
 for i in range(len(angle_180)):
     if angle_180[i] < maximum and angle_180[i] > minimum:
-        fig3.add_hline(y=angle_180[i], line_color='black', line_width=1.5, annotation_text="180")
+        l = calcLevel(angle_180[i])
+        fig3.add_hline(y=angle_180[i], line_color='black', line_width=1.5, annotation_text=str(l) + ": 180")
 
 for i in range(len(date_angle_180)):    
     if date_angle_180[i] < maxDate:
@@ -159,7 +178,8 @@ for i in range(len(date_angle_180)):
 
 for i in range(len(angle_225)):
     if angle_225[i] < maximum and angle_225[i] > minimum:
-        fig3.add_hline(y=angle_225[i], line_color='blue', line_width=0.75, annotation_text="225")
+        l = calcLevel(angle_225[i])
+        fig3.add_hline(y=angle_225[i], line_color='blue', line_width=0.75, annotation_text=str(l) + ": 225")
 
 for i in range(len(date_angle_225)):        
     if date_angle_225[i] < maxDate:
@@ -169,7 +189,8 @@ for i in range(len(date_angle_225)):
 
 for i in range(len(angle_270)):
     if angle_270[i] < maximum and angle_270[i] > minimum:
-        fig3.add_hline(y=angle_270[i], line_color='black', line_width=0.75, annotation_text="270")
+        l = calcLevel(angle_270[i])
+        fig3.add_hline(y=angle_270[i], line_color='black', line_width=0.75, annotation_text=str(l) + ": 270")
 
 for i in range(len(date_angle_270)):    
     if date_angle_270[i] < maxDate:
@@ -179,7 +200,8 @@ for i in range(len(date_angle_270)):
 
 for i in range(len(angle_315)):
     if angle_315[i] < maximum and angle_315[i] > minimum:
-        fig3.add_hline(y=angle_315[i], line_color='blue', line_width=0.75, annotation_text="315")
+        l = calcLevel(angle_315[i])
+        fig3.add_hline(y=angle_315[i], line_color='blue', line_width=0.75, annotation_text=str(l) + ": 315")
 
 for i in range(len(date_angle_315)):    
     if date_angle_315[i] < maxDate:
